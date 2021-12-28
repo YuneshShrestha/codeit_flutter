@@ -12,6 +12,7 @@ class Home extends StatelessWidget {
       body: Column(
         children: [
           const Card(
+            elevation: 0,
             child: Padding(
               padding: EdgeInsets.all(8.0),
               child: Text(
