@@ -19,7 +19,7 @@ class Home extends StatelessWidget {
               leading: const Icon(Icons.verified_user),
               title: const Text("User"),
               subtitle: const Text("Location"),
-              trailing: TextButton(onPressed: () {}, child: Text("View")),
+              trailing: TextButton(onPressed: () {}, child: const Text("View")),
             ),
             const Card(
               elevation: 0,
@@ -36,6 +36,19 @@ class Home extends StatelessWidget {
               onPressed: () {},
               child: const Text("Hi"),
             ),
+            const CircularProgressIndicator.adaptive(),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: 20,
+              color: Colors.amber,
+              // Fitted Box kura haru atauna
+              child: const FittedBox(
+                child: Text(
+                  "Hello World",
+                  style: TextStyle(fontSize: 30),
+                ),
+              ),
+            ),
             ElevatedButton.icon(
                 onPressed: () {},
                 icon: const Icon(Icons.send),
@@ -49,14 +62,15 @@ class Home extends StatelessWidget {
               child: const Text("Text Button"),
             ),
             IconButton(onPressed: () {}, icon: const Icon(Icons.save)),
-            card(),
-            card(),
-            card(),
-            card(),
-            card(),
-            card(),
-            card(),
-            card()
+            Wrap(
+              children: [
+                card("images/logo.png"),
+                card(""),
+                card(""),
+                card(""),
+                card(""),
+              ],
+            ),
           ],
         ),
       ),
@@ -64,11 +78,24 @@ class Home extends StatelessWidget {
   }
 }
 
-Widget card() {
-  return const Padding(
-    padding: EdgeInsets.all(20.0),
+Widget card(image) {
+  return Padding(
+    padding: const EdgeInsets.all(2.0),
     child: Card(
-      child: Text("Hello World Its me yunesh"),
-    ),
+        color: Colors.black,
+        child: Column(
+          children: [
+            image == ""
+                ? const Text(
+                    "No Image",
+                    style: TextStyle(color: Colors.white),
+                  )
+                : Image.asset(image),
+            const Text(
+              "Hello World",
+              style: TextStyle(color: Colors.white),
+            ),
+          ],
+        )),
   );
 }
